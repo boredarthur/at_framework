@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="API Tests">
+    <test name="CREATE Test">
+        <classes>
+            <class name="test.java.API.test.PostNewUserAPITest"></class>
+        </classes>
+    </test>
+    <test name="LIST Test">
+        <classes>
+            <class name="test.java.API.test.GetUserListAPITest"></class>
+        </classes>
+    </test>
+    <test name="RETRIEVE Test">
+        <classes>
+            <class name="test.java.API.test.GetUserValidationAPITest"></class>
+        </classes>
+    </test>
+    <test name="PUT Test">
+        <classes>
+            <class name="test.java.API.test.PutUserAPITest"></class>
+        </classes>
+    </test>
+    <test name="DELETE Test">
+        <classes>
+            <class name="test.java.API.test.DeleteUserAPITest"></class>
+        </classes>
+    </test>
+</suite>

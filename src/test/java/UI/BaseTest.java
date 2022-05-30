@@ -4,7 +4,7 @@ import org.testng.annotations.DataProvider;
 public class BaseTest {
     @DataProvider(parallel = true, name = "browserDataProvider")
     public static Object[][] browserDataProvider() {
-        return new Object[][]{{"chrome"}};
+        return new Object[][]{{"chrome"}, {"firefox"}};
     }
 
     @DataProvider(parallel = true, name = "nameDataProvider")
