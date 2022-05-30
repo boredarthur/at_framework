@@ -1,11 +1,21 @@
 package test.java.API.data;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "USERS")
 public class UserPOJO {
-
+    @Id
+    @GeneratedValue(strategy=GenerationType.AUTO)
+    Integer id;
+    @Column(name = "first_name")
     String first_name;
+    @Column(name = "second_name")
     String second_name;
+    @Column(name = "street")
     String street;
+    @Column(name = "email")
     String email;
+    @Column(name = "phone_number")
     String phone_number;
 
     public UserPOJO(String first_name, String second_name, String street, String email, String phone_number) {
@@ -54,5 +64,12 @@ public class UserPOJO {
 
     public void setPhone_number(String phone_number) {
         this.phone_number = phone_number;
+    }
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id_address) {
+        this.id = id_address;
     }
 }

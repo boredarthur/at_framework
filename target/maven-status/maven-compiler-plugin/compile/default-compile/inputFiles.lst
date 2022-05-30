@@ -26,6 +26,7 @@
 /Users/artur/IdeaProjects/at-project-framework/src/test/java/API/data/UserPOJO.java
 /Users/artur/IdeaProjects/at-project-framework/src/main/java/utils/RetryAnalyser.java
 /Users/artur/IdeaProjects/at-project-framework/src/main/java/pageFactory/BO/ChangeNameBO.java
+/Users/artur/IdeaProjects/at-project-framework/src/main/java/utils/HibernateUtil.java
 /Users/artur/IdeaProjects/at-project-framework/src/main/java/pageFactory/BO/HomeBO.java
 /Users/artur/IdeaProjects/at-project-framework/src/main/java/drivers/WebDriverManager.java
 /Users/artur/IdeaProjects/at-project-framework/src/test/java/API/test/E_DeleteUserAPITest.java

@@ -1,9 +1,11 @@
 package test.java.API.test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import main.java.utils.HibernateUtil;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
+import org.hibernate.Session;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.testng.Assert;
@@ -25,6 +27,7 @@ public class A_PostNewUserAPITest extends BaseTest {
     String URL;
     RestClient restClient;
     CloseableHttpResponse closableHttpResponse;
+    private static Session session;
 
     @BeforeMethod
     public void setup() throws ClientProtocolException, IOException, JSONException {
@@ -32,6 +35,7 @@ public class A_PostNewUserAPITest extends BaseTest {
         serviceURL = prop.getProperty("URL");
         apiURL = prop.getProperty("userCreateServiceURL");
         URL = serviceURL + apiURL;
+        session = HibernateUtil.getSessionFactory().openSession();
     }
 
     @Test(priority = 1)
@@ -41,7 +45,10 @@ public class A_PostNewUserAPITest extends BaseTest {
         headermap.put("Content-Type", "application/json");
         ObjectMapper mapper = new ObjectMapper();
 
-        UserPOJO user = new UserPOJO("Automation", "Test", "Placeholder", "automation50@email.com", "+380960060050");
+        UserPOJO user = new UserPOJO("Automation", "Test", "Placeholder", "automation52@email.com", "+380960060052");
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
         mapper.writeValue(new File(".\\data\\user.json"), user);
 
         String userJsonString = mapper.writeValueAsString(user);

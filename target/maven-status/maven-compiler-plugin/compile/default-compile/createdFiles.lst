@@ -12,6 +12,7 @@ test/java/API/BaseTest.class
 main/java/pageFactory/PO/HomePO.class
 main/java/pageFactory/BO/SearchBO.class
 main/java/pageFactory/PO/CartPO.class
+main/java/utils/HibernateUtil.class
 main/java/utils/SuiteListener.class
 test/java/UI/BaseTest.class
 main/java/drivers/WebDriverManager.class
