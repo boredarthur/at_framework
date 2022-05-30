@@ -5,7 +5,7 @@ import javax.persistence.*;
 @Table(name = "USERS")
 public class UserPOJO {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = javax.persistence.GenerationType.IDENTITY)
     Integer id;
     @Column(name = "first_name")
     String first_name;
@@ -17,6 +17,8 @@ public class UserPOJO {
     String email;
     @Column(name = "phone_number")
     String phone_number;
+    @Column(name = "token")
+    String token;
 
     public UserPOJO(String first_name, String second_name, String street, String email, String phone_number) {
         this.first_name = first_name;
@@ -71,5 +73,13 @@ public class UserPOJO {
 
     public void setId(Integer id_address) {
         this.id = id_address;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

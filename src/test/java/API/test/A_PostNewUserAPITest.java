@@ -45,10 +45,7 @@ public class A_PostNewUserAPITest extends BaseTest {
         headermap.put("Content-Type", "application/json");
         ObjectMapper mapper = new ObjectMapper();
 
-        UserPOJO user = new UserPOJO("Automation", "Test", "Placeholder", "automation52@email.com", "+380960060052");
-        session.beginTransaction();
-        session.save(user);
-        session.getTransaction().commit();
+        UserPOJO user = new UserPOJO("Automation", "Test", "Placeholder", "automation60@email.com", "+380960060060");
         mapper.writeValue(new File(".\\data\\user.json"), user);
 
         String userJsonString = mapper.writeValueAsString(user);
@@ -66,7 +63,11 @@ public class A_PostNewUserAPITest extends BaseTest {
         String responseString = EntityUtils.toString(closableHttpResponse.getEntity(), "UTF-8");
         JSONObject responseJson = new JSONObject(responseString);
         Variables.TOKEN = (String) responseJson.get("token");
+        user.setToken((String) responseJson.get("token"));
         Variables.USER = user;
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
         System.out.println("Response JSON from API " + responseJson);
         System.out.println("POST ENDED");
     }
