@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Amazon Test Suite">
+    <listeners>
+        <listener class-name="main.java.utils.SuiteListener"></listener>
+    </listeners>
+    <test name="Login Test">
+        <classes>
+            <class name="test.java.UI.UILoginTest"></class>
+        </classes>
+    </test>
+    <test name="Wishlist Test">
+        <classes>
+            <class name="test.java.UI.UIWishlistTest"></class>
+        </classes>
+    </test>
+    <test name="Change Name Test">
+        <classes>
+            <class name="test.java.UI.UIChangeNameTest"></class>
+        </classes>
+    </test>
+    <test name="Search Test">
+        <classes>
+            <class name="test.java.UI.UISearchTest"></class>
+        </classes>
+    </test>
+    <test name="Add To Cart Test">
+        <classes>
+            <class name="test.java.UI.UIAddToCartTest"></class>
+        </classes>
+    </test>
+</suite>
