@@ -3,27 +3,27 @@
 <suite name="API Tests">
     <test name="CREATE Test">
         <classes>
-            <class name="test.java.API.test.PostNewUserAPITest"></class>
+            <class name="test.java.API.test.A_PostNewUserAPITest"></class>
         </classes>
     </test>
     <test name="LIST Test">
         <classes>
-            <class name="test.java.API.test.GetUserListAPITest"></class>
+            <class name="test.java.API.test.B_GetUserListAPITest"></class>
         </classes>
     </test>
     <test name="RETRIEVE Test">
         <classes>
-            <class name="test.java.API.test.GetUserValidationAPITest"></class>
+            <class name="test.java.API.test.C_GetUserValidationAPITest"></class>
         </classes>
     </test>
     <test name="PUT Test">
         <classes>
-            <class name="test.java.API.test.PutUserAPITest"></class>
+            <class name="test.java.API.test.D_PutUserAPITest"></class>
         </classes>
     </test>
     <test name="DELETE Test">
         <classes>
-            <class name="test.java.API.test.DeleteUserAPITest"></class>
+            <class name="test.java.API.test.E_DeleteUserAPITest"></class>
         </classes>
     </test>
 </suite>
