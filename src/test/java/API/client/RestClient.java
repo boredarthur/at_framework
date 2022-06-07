@@ -36,7 +36,7 @@ public class RestClient {
     public CloseableHttpResponse POST(String url, String entityString, HashMap<String, String> headermap) throws ClientProtocolException, IOException, JSONException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
         HttpPost httpPost = new HttpPost(url);
-        httpPost.setEntity(new StringEntity(entityString));
+        httpPost.setEntity(new StringEntity(entityString, "UTF-8"));
 
         for (Map.Entry<String, String> entry: headermap.entrySet()) {
             httpPost.addHeader(entry.getKey(), entry.getValue());

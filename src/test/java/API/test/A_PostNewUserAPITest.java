@@ -90,7 +90,7 @@ public class A_PostNewUserAPITest extends BaseTest {
     }
 
     public UserPOJO createNewUser() throws IOException {
-        UserPOJO user = new UserPOJO("Automation", "Test", "Placeholder", "automation69@email.com", "+380960060069");
+        UserPOJO user = new UserPOJO("Automation", "Test", "Placeholder", "automation100@email.com", "+380960060100");
         return user;
     }
 

@@ -23,25 +23,37 @@ import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 
-public class B_PutUserAPITest extends BaseTest {
-    test.java.API.BaseTest baseTest;
+public class С_DeleteUserAPITest extends BaseTest {
+    BaseTest baseTest;
     RestClient restClient;
     CloseableHttpResponse closableHttpResponse;
-    String changeTo;
     private static Session session;
 
     @BeforeMethod
     public void setup() throws ClientProtocolException, IOException, JSONException {
         baseTest = new BaseTest();
-        changeTo = "ChangedWithJava";
-        session = HibernateUtil.getSessionFactory().openSession();
         restClient = new RestClient();
+        session = HibernateUtil.getSessionFactory().openSession();
     }
-    @Test(priority = 2)
-    public void PutUserTest() throws ClientProtocolException, IOException, JSONException {
+
+    @Test(priority = 3)
+    public void DeleteUserTest() throws ClientProtocolException, IOException, JSONException {
         postCreateNewUser();
-        putUser();
         validateNewUserCreated();
+        deleteUser();
+    }
+
+    public void deleteUser() throws IOException {
+        HashMap<String, String> headers = new HashMap<String, String>();
+        headers.put("Content-Type", "application/json");
+        headers.put("Authorization", "Bearer " + Variables.TOKEN);
+        HashMap<String, String> headermap = restClient.applyHeaderMap(headers);
+
+        closableHttpResponse = restClient.DELETE(Constants.userRetrieveURL, headermap);
+
+        int statusCode = restClient.logStatusCode(closableHttpResponse);
+        Assert.assertEquals(statusCode, responseStatusCode204);
+        System.out.println("DELETE ENDED");
     }
 
     public void postCreateNewUser() throws IOException {
@@ -62,48 +74,8 @@ public class B_PutUserAPITest extends BaseTest {
         System.out.println("POST ENDED");
     }
 
-    public void putUser() throws IOException {
-        HashMap<String, String> headers = new HashMap<String, String>();
-        headers.put("Content-Type", "application/json");
-        headers.put("Authorization", "Bearer " + Variables.TOKEN);
-        HashMap<String, String> headermap = restClient.applyHeaderMap(headers);
-
-        String userJsonString = changeUser();
-        closableHttpResponse = restClient.PUT(Constants.userRetrieveURL, userJsonString, headermap);
-        int statusCode = restClient.logStatusCode(closableHttpResponse);
-        Assert.assertEquals(statusCode, responseStatusCode200, "Status code is 200");
-
-        UserRegisterPOJO user = parseResponse();
-        Assert.assertTrue(user.getFirst_name().equals(changeTo));
-        System.out.println("PUT ENDED");
-
-    }
-
-    public String changeUser() throws JsonProcessingException {
-        ObjectMapper mapper = new ObjectMapper();
-        UserPOJO newUser = Variables.USER;
-        newUser.setFirst_name(changeTo);
-        String userJsonString = mapper.writeValueAsString(newUser);
-        return userJsonString;
-    }
-
-    public UserRegisterPOJO parseResponse() throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        String responseString = EntityUtils.toString(closableHttpResponse.getEntity(), "UTF-8");
-        UserRegisterPOJO userRegisterPOJOResponseObject = mapper.readValue(responseString, UserRegisterPOJO.class);
-        return userRegisterPOJOResponseObject;
-    }
-
-    public JSONObject parseResponse(UserPOJO user) throws IOException {
-        String responseString = EntityUtils.toString(closableHttpResponse.getEntity(), "UTF-8");
-        JSONObject responseJson = new JSONObject(responseString);
-        restClient.setUserData(user, (String) responseJson.get("token"));
-        restClient.saveUserToDB(session, user);
-        return responseJson;
-    }
-
     public UserPOJO createNewUser() throws IOException {
-        UserPOJO user = new UserPOJO("Automation", "Test", "Placeholder", "automation70@email.com", "+380960060070");
+        UserPOJO user = new UserPOJO("Automation", "Test", "Placeholder", "automation71@email.com", "+380960060071");
         return user;
     }
 
@@ -116,6 +88,21 @@ public class B_PutUserAPITest extends BaseTest {
         return userJsonString;
     }
 
+    public JSONObject parseResponse(UserPOJO user) throws IOException {
+        String responseString = EntityUtils.toString(closableHttpResponse.getEntity(), "UTF-8");
+        JSONObject responseJson = new JSONObject(responseString);
+        restClient.setUserData(user, (String) responseJson.get("token"));
+        restClient.saveUserToDB(session, user);
+        return responseJson;
+    }
+
+    public UserRegisterPOJO parseResponse() throws IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        String responseString = EntityUtils.toString(closableHttpResponse.getEntity(), "UTF-8");
+        UserRegisterPOJO userRegisterPOJOResponseObject = mapper.readValue(responseString, UserRegisterPOJO.class);
+        return userRegisterPOJOResponseObject;
+    }
+
     public void validateNewUserCreated() throws IOException {
         HashMap<String, String> headers = new HashMap<String, String>();
         headers.put("Content-Type", "application/json");
@@ -125,7 +112,9 @@ public class B_PutUserAPITest extends BaseTest {
         closableHttpResponse = restClient.GET(Constants.userRetrieveURL, headermap);
         UserRegisterPOJO user = parseResponse();
 
-        Assert.assertTrue(user.getFirst_name().equals(changeTo));
+        Assert.assertTrue(Variables.USER.getEmail().equals(user.getEmail()));
+        Assert.assertTrue(Variables.USER.getPhone_number().equals(user.getPhone_number()));
         System.out.println("RETRIEVE USER ENDED");
     }
+
 }

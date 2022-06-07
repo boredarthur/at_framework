@@ -23,7 +23,7 @@
     </test>
     <test name="DELETE Test">
         <classes>
-            <class name="test.java.API.test.E_DeleteUserAPITest"></class>
+            <class name="test.java.API.test.С_DeleteUserAPITest"></class>
         </classes>
     </test>
 </suite>
