@@ -18,7 +18,7 @@
     </test>
     <test name="PUT Test">
         <classes>
-            <class name="test.java.API.test.D_PutUserAPITest"></class>
+            <class name="test.java.API.test.B_PutUserAPITest"></class>
         </classes>
     </test>
     <test name="DELETE Test">

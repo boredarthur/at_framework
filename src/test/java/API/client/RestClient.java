@@ -11,6 +11,7 @@ import test.java.API.Variables;
 import test.java.API.data.UserPOJO;
 
 import java.io.IOException;
+import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -87,4 +88,13 @@ public class RestClient {
         user.setToken(token);
         Variables.USER = user;
     }
+
+    public HashMap<String, String> applyHeaderMap(HashMap<String, String> headers) {
+        HashMap<String, String> headermap = new HashMap<String, String>();
+        for (Map.Entry<String, String> entry: headers.entrySet()) {
+            headermap.put(entry.getKey(), entry.getValue());
+        }
+        return headermap;
+    }
+
 }
