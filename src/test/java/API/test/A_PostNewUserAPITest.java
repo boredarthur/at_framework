@@ -52,22 +52,15 @@ public class A_PostNewUserAPITest extends BaseTest {
         System.out.println(userJsonString);
 
         closableHttpResponse = restClient.POST(URL, userJsonString, headermap);
-
-        // Fetch status code
-        int statusCode = closableHttpResponse.getStatusLine().getStatusCode();
-        System.out.println("Status code " + statusCode);
+        int statusCode = restClient.logStatusCode(closableHttpResponse);
 
         // Validate
         Assert.assertEquals(statusCode, responseStatusCode201, "Status code is 201");
 
         String responseString = EntityUtils.toString(closableHttpResponse.getEntity(), "UTF-8");
         JSONObject responseJson = new JSONObject(responseString);
-        Variables.TOKEN = (String) responseJson.get("token");
-        user.setToken((String) responseJson.get("token"));
-        Variables.USER = user;
-        session.beginTransaction();
-        session.save(user);
-        session.getTransaction().commit();
+        restClient.setUserData(user, (String) responseJson.get("token"));
+        restClient.saveUserToDB(session, user);
         System.out.println("Response JSON from API " + responseJson);
         System.out.println("POST ENDED");
     }

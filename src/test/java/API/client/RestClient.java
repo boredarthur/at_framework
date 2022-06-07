@@ -5,7 +5,10 @@ import org.apache.http.client.methods.*;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
+import org.hibernate.Session;
 import org.json.JSONException;
+import test.java.API.Variables;
+import test.java.API.data.UserPOJO;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -65,5 +68,23 @@ public class RestClient {
 
         CloseableHttpResponse closeableHttpResponse = httpClient.execute(httpDelete);
         return closeableHttpResponse;
+    }
+
+    public int logStatusCode(CloseableHttpResponse response) {
+        int statusCode = response.getStatusLine().getStatusCode();
+        System.out.println("Status code " + statusCode);
+        return statusCode;
+    }
+
+    public void saveUserToDB(Session session, UserPOJO user) {
+        session.beginTransaction();
+        session.save(user);
+        session.getTransaction().commit();
+    }
+
+    public void setUserData(UserPOJO user, String token) {
+        Variables.TOKEN = token;
+        user.setToken(token);
+        Variables.USER = user;
     }
 }

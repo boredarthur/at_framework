@@ -2,7 +2,6 @@ package test.java.UI;
 
 import main.java.drivers.BrowserFactory;
 import main.java.pageFactory.BO.CartBO;
-import main.java.pageFactory.BO.HomeBO;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -16,6 +15,6 @@ public class UIAddToCartTest extends BaseTest {
 
     @AfterMethod
     void quitBrowser() {
-        BrowserFactory.getDriver().quit();
+//        BrowserFactory.getDriver().quit();
     }
 }

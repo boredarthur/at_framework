@@ -1,11 +1,12 @@
 package main.java.pageFactory.PO;
 
 import main.java.drivers.BrowserFactory;
+import main.java.pageFactory.Wrappers.EmailFieldWrapper;
+import main.java.pageFactory.Wrappers.PasswordFieldWrapper;
 import main.java.utils.Constants;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.Parameters;
 
 public class HomePO {
 
@@ -14,15 +15,8 @@ public class HomePO {
 
     @FindBy(id = "ap_email")
     private WebElement emailField;
-
-    @FindBy(xpath = "//*[@id=\"continue\"]")
-    private WebElement continueButton;
-
     @FindBy(xpath = "//*[@id=\"ap_password\"]")
     private WebElement passwordField;
-
-    @FindBy(xpath = "//*[@id=\"signInSubmit\"]")
-    private WebElement signInSubmitButton;
 
     public HomePO() {
         PageFactory.initElements(BrowserFactory.getDriver(), this);
@@ -39,14 +33,14 @@ public class HomePO {
     }
 
     public HomePO enterEmail(String email) {
-        emailField.sendKeys(email);
-        continueButton.click();
+        EmailFieldWrapper emailFieldWrapper = new EmailFieldWrapper(emailField);
+        emailFieldWrapper.enterEmail(email);
         return this;
     }
 
     public HomePO enterPassword(String password) {
-        passwordField.sendKeys(password);
-        signInSubmitButton.click();
+        PasswordFieldWrapper passwordFieldWrapper = new PasswordFieldWrapper(passwordField);
+        passwordFieldWrapper.enterPassword(password);
         return this;
     }
 

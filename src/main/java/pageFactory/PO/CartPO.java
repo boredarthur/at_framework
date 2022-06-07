@@ -20,10 +20,7 @@ public class CartPO {
     @FindBy(xpath = "//img[contains(@alt, 'Lavazza Crema e Aroma - Coffee Beans, 2.2-Pound Bag - Pack of 2')]")
     private WebElement productImage;
 
-    @FindBy(xpath = "//a[contains(@title, 'See All Buying Options')]")
-    private WebElement seeAllOptionsButton;
-
-    @FindBy(xpath = "//*[contains(@name, 'submit.addToCart')]")
+    @FindBy(xpath = "//input[contains(@title, 'Add to Shopping Cart')]")
     private WebElement addToCartButton;
 
     public CartPO() {
@@ -47,8 +44,6 @@ public class CartPO {
     }
 
     public CartPO addProductToACart() {
-        seeAllOptionsButton.click();
-        waitFor("//*[contains(@name, 'submit.addToCart')]");
         addToCartButton.click();
         return this;
     }
