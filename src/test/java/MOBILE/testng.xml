@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="MOBILE Tests">
+    <test name="Search Test">
+        <classes>
+            <class name="test.java.MOBILE.SearchTest"></class>
+        </classes>
+    </test>
+    <test name="Bestsellers Detail Test">
+        <classes>
+            <class name="test.java.MOBILE.BestsellersDetailTest"></class>
+        </classes>
+    </test>
+    <test name="Load More Test">
+        <classes>
+            <class name="test.java.MOBILE.LoadMoreTest"></class>
+        </classes>
+    </test>
+    <test name="Stack View Test">
+        <classes>
+            <class name="test.java.MOBILE.StackViewTest"></class>
+        </classes>
+    </test>
+    <test name="Steppers Test">
+        <classes>
+            <class name="test.java.MOBILE.SteppersTest"></class>
+        </classes>
+    </test>
+</suite>

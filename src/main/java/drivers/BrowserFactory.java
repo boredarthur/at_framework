@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
+
 public class BrowserFactory {
     private static final ThreadLocal<WebDriver> DRIVER_INSTANCE = new InheritableThreadLocal<>();
 
@@ -27,7 +29,7 @@ public class BrowserFactory {
     }
 
     public static WebDriverWait driverWait(long timeInSeconds) {
-        WebDriverWait wait = new WebDriverWait(DRIVER_INSTANCE.get(), timeInSeconds);
+        WebDriverWait wait = new WebDriverWait(DRIVER_INSTANCE.get(), Duration.ofSeconds(timeInSeconds));
         return wait;
     }
 }
